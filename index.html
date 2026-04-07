@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rooted Language · Active Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terracotta: #B85C38;
+  --terracotta-light: #F5E8E0;
+  --terracotta-mid: #D4845A;
+  --teal: #2A6B5E;
+  --teal-light: #EAF4F1;
+  --teal-mid: #3D8C7C;
+  --ink: #1C1C1C;
+  --ink-soft: #3A3A3A;
+  --muted: #767676;
+  --warm-white: #FDFAF7;
+  --soft-bg: #F7F3EE;
+  --border: rgba(28,28,28,0.10);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--warm-white);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2.5rem;
+  background: rgba(253,250,247,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--terracotta); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  font-size: 13px; font-weight: 400;
+  color: var(--muted); text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  font-size: 13px; font-weight: 500;
+  color: var(--warm-white) !important;
+  background: var(--terracotta);
+  padding: 8px 20px;
+  border-radius: 40px;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: #9E4A2A !important; color: var(--warm-white) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 5rem 2.5rem 4rem;
+  gap: 4rem;
+  background: var(--warm-white);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: -8%;
+  top: -10%;
+  width: 55%;
+  height: 120%;
+  background: radial-gradient(ellipse at 60% 40%, #F5E8E0 0%, transparent 70%),
+              radial-gradient(ellipse at 30% 80%, #EAF4F1 0%, transparent 60%);
+  z-index: 0;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 1.75rem;
+}
+.hero-eyebrow-line {
+  width: 32px; height: 1px; background: var(--terracotta);
+}
+.hero-eyebrow span {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--terracotta);
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.hero h1 em { font-style: italic; color: var(--terracotta); }
+.hero-sub {
+  font-size: 15px; color: var(--muted);
+  max-width: 440px;
+  line-height: 1.8;
+  margin-bottom: 2.25rem;
+}
+.hero-sub strong { color: var(--ink); font-weight: 500; }
+.btn-primary {
+  display: inline-block;
+  background: var(--terracotta);
+  color: var(--warm-white);
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-size: 14px; font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover { background: #9E4A2A; transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-block;
+  color: var(--ink);
+  padding: 14px 28px;
+  border-radius: 40px;
+  font-size: 14px; font-weight: 400;
+  text-decoration: none;
+  border: 0.5px solid var(--border);
+  margin-left: 0.75rem;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+.hero-badges {
+  display: flex; flex-direction: column; gap: 0.85rem;
+  position: relative; z-index: 1;
+}
+.hero-badge {
+  display: flex; align-items: flex-start; gap: 1rem;
+  background: white;
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+  transition: box-shadow 0.2s;
+}
+.hero-badge:hover { box-shadow: 0 4px 24px rgba(28,28,28,0.07); }
+.badge-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.badge-icon svg { width: 16px; height: 16px; }
+.badge-text h4 {
+  font-size: 13px; font-weight: 500;
+  color: var(--ink); margin-bottom: 2px;
+}
+.badge-text p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.hero-stats {
+  display: flex; gap: 2.5rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 0.5px solid var(--border);
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem; font-weight: 600;
+  color: var(--terracotta);
+  line-height: 1;
+  display: block;
+}
+.stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; margin-top: 4px; }
+
+/* ── SECTION SHELL ── */
+section { padding: 5rem 2.5rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 1.25rem;
+}
+.section-eyebrow-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+.section-eyebrow span {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+}
+h2.display {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+h2.display em { font-style: italic; color: var(--terracotta); }
+.section-lead {
+  font-size: 15px; color: var(--muted);
+  max-width: 520px; line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+hr.divider {
+  border: none;
+  border-top: 0.5px solid var(--border);
+  margin: 0 2.5rem;
+}
+
+/* ── MÉTODO ── */
+.metodo-bg { background: var(--soft-bg); }
+
+.metodo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.feature-list { display: flex; flex-direction: column; gap: 1.75rem; }
+.feature-item { display: flex; gap: 1.25rem; align-items: flex-start; }
+.feature-bullet {
+  width: 28px; height: 28px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+/* Refined SVG bullet */
+.feature-bullet svg { width: 20px; height: 20px; }
+.feature-item h3 {
+  font-size: 14px; font-weight: 500;
+  color: var(--ink); margin-bottom: 4px;
+}
+.feature-item p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+.formula-stack { display: flex; flex-direction: column; gap: 0.85rem; }
+.formula-card {
+  background: white;
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+.formula-card.accent {
+  background: var(--terracotta-light);
+  border-color: rgba(184,92,56,0.2);
+}
+.formula-card h4 {
+  font-size: 13px; font-weight: 500;
+  color: var(--ink); margin-bottom: 4px;
+}
+.formula-card.accent h4 { color: var(--terracotta); }
+.formula-card p { font-size: 13px; color: var(--muted); }
+.formula-card.accent p { color: #7A3B22; }
+.formula-op {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.5rem; color: var(--muted);
+  padding: 0.1rem 0;
+}
+
+/* ── PROGRAMAS ── */
+.prog-tabs {
+  display: flex; gap: 0;
+  border: 0.5px solid var(--border);
+  border-radius: 40px;
+  display: inline-flex;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+}
+.prog-tab {
+  padding: 9px 22px;
+  font-size: 13px; font-weight: 400;
+  color: var(--muted);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+.prog-tab.active {
+  background: var(--ink);
+  color: white;
+  border-radius: 40px;
+  font-weight: 500;
+}
+
+.kids-levels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.level-card {
+  background: white;
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.level-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.level-card.d1::before { background: var(--terracotta); }
+.level-card.d2::before { background: var(--teal); }
+.level-card.d3::before { background: #534AB7; }
+
+.level-tag {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 0.75rem; display: block;
+}
+.level-card.d1 .level-tag { color: var(--terracotta); }
+.level-card.d2 .level-tag { color: var(--teal); }
+.level-card.d3 .level-tag { color: #534AB7; }
+
+.level-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.level-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+.adult-card {
+  background: white;
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  border-left: 3px solid var(--terracotta);
+  border-radius: 0 16px 16px 0;
+}
+.adult-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem; font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+.adult-card h2 em { font-style: italic; color: var(--terracotta); }
+.adult-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.adult-feat { display: flex; gap: 10px; align-items: flex-start; }
+.adult-feat-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  margin-top: 8px; flex-shrink: 0;
+}
+.adult-feat h4 { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.adult-feat p { font-size: 12px; color: var(--muted); }
+
+/* ── ESP ── */
+.esp-bg { background: var(--ink); }
+.esp-bg .section-eyebrow span { color: rgba(255,255,255,0.4); }
+.esp-bg h2.display { color: white; }
+.esp-bg h2.display em { color: var(--terracotta-mid); }
+.esp-bg .section-lead { color: rgba(255,255,255,0.5); }
+
+.esp-sectors {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.esp-sector-tab {
+  padding: 1rem 1.25rem;
+  border-right: 0.5px solid rgba(255,255,255,0.1);
+  border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: background 0.2s;
+  background: transparent;
+  text-align: left;
+}
+.esp-sector-tab:nth-child(4n) { border-right: none; }
+.esp-sector-tab:nth-child(n+5) { border-bottom: none; }
+.esp-sector-tab:hover { background: rgba(255,255,255,0.05); }
+.esp-sector-tab.active { background: rgba(255,255,255,0.08); }
+.esp-sector-name {
+  font-size: 13px; font-weight: 500;
+  color: white; margin-bottom: 2px;
+}
+.esp-sector-sub {
+  font-size: 11px; color: rgba(255,255,255,0.4);
+}
+
+.esp-detail {
+  margin-top: 2rem;
+  background: rgba(255,255,255,0.04);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  display: none;
+}
+.esp-detail.active { display: block; }
+.esp-detail-header {
+  display: flex; align-items: baseline; gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.esp-detail-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 500;
+  color: white;
+}
+.esp-detail-header span {
+  font-size: 11px; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.05em;
+}
+.esp-bullets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.esp-bullet {
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.esp-bullet-mark {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(255,255,255,0.3);
+  flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+}
+.esp-bullet-mark::after {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--terracotta-mid);
+}
+.esp-bullet p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+/* ── WHY ── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.why-card {
+  padding: 1.75rem;
+  background: white;
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+}
+.why-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem; font-weight: 400;
+  color: var(--terracotta-light);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  /* layered with real number */
+  position: relative;
+}
+.why-num::after {
+  content: attr(data-n);
+  position: absolute;
+  top: 0; left: 0;
+  color: var(--terracotta);
+  opacity: 0.35;
+}
+.why-card h3 { font-size: 14px; font-weight: 500; margin-bottom: 0.5rem; }
+.why-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+/* ── TESTIMONIOS ── */
+.testi-bg { background: var(--soft-bg); }
+.testi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.testi-card {
+  background: white;
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+}
+.testi-quote {
+  font-family: var(--font-display);
+  font-size: 2rem; color: var(--terracotta);
+  line-height: 1; margin-bottom: 0.75rem;
+}
+.testi-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.75; }
+.testi-author {
+  margin-top: 1.25rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.testi-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--terracotta-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 500; color: var(--terracotta);
+}
+.testi-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+.testi-role { font-size: 11px; color: var(--muted); }
+
+/* ── CTA ── */
+.cta-section {
+  background: var(--terracotta);
+  padding: 5rem 2.5rem;
+  text-align: center;
+}
+.cta-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 500;
+  color: white;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.cta-section h2 em { font-style: italic; opacity: 0.8; }
+.cta-section p { color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 2.25rem; }
+.btn-white {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: white; color: var(--terracotta);
+  padding: 15px 32px; border-radius: 40px;
+  font-size: 14px; font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+.wha-icon { width: 18px; height: 18px; }
+.cta-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 1rem; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 2.5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 500;
+  color: white;
+}
+.footer-logo span { color: var(--terracotta-mid); }
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.7); }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); width: 100%; margin-top: 0.5rem; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+.fade-up:nth-child(1) { animation-delay: 0.1s; }
+.fade-up:nth-child(2) { animation-delay: 0.2s; }
+.fade-up:nth-child(3) { animation-delay: 0.3s; }
+.fade-up:nth-child(4) { animation-delay: 0.4s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; padding: 3rem 1.5rem; }
+  .hero::before { display: none; }
+  .hero-badges { display: none; }
+  .metodo-grid { grid-template-columns: 1fr; }
+  .kids-levels { grid-template-columns: 1fr; }
+  .esp-sectors { grid-template-columns: repeat(2, 1fr); }
+  .esp-bullets { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .adult-grid { grid-template-columns: 1fr; }
+  section { padding: 3.5rem 1.5rem; }
+  hr.divider { margin: 0 1.5rem; }
+  .nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">Rooted <span>Language</span></a>
+  <div class="nav-links">
+    <a href="#metodo">Método</a>
+    <a href="#programas">Programas</a>
+    <a href="#esp">ESP</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto" class="nav-cta">Diagnóstico gratuito</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:5rem;padding-bottom:5rem">
+  <div class="hero-content">
+    <div class="hero-eyebrow fade-up">
+      <div class="hero-eyebrow-line"></div>
+      <span>Active Coaching · Inglés real</span>
+    </div>
+    <h1 class="fade-up" style="animation-delay:0.15s">
+      No solo aprendas inglés.<br>
+      <em>Entrena tu fluidez</em><br>
+      para el mundo real.
+    </h1>
+    <p class="hero-sub fade-up" style="animation-delay:0.25s">
+      Un equipo de profesores dedicados — no una app, no un algoritmo. Nuestro método <strong>Active Coaching</strong> transforma tu inglés a través del acompañamiento humano real y temas que te apasionan.
+    </p>
+    <div class="fade-up" style="animation-delay:0.35s">
+      <a href="#contacto" class="btn-primary">Agenda tu diagnóstico gratuito</a>
+      <a href="#metodo" class="btn-ghost">Conoce el método</a>
+    </div>
+    <div class="hero-stats fade-up" style="animation-delay:0.45s">
+      <div>
+        <span class="stat-num">10</span>
+        <div class="stat-label">Alumnos por grupo, máximo</div>
+      </div>
+      <div>
+        <span class="stat-num">100%</span>
+        <div class="stat-label">Clases en vivo con profesor real</div>
+      </div>
+      <div>
+        <span class="stat-num">8+</span>
+        <div class="stat-label">Industrias ESP especializadas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-badges">
+    <div class="hero-badge fade-up" style="animation-delay:0.2s">
+      <div class="badge-icon" style="background:var(--terracotta-light)">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10" r="7" stroke="#B85C38" stroke-width="1.2"/>
+          <path d="M7 10l2 2 4-4" stroke="#B85C38" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="badge-text">
+        <h4>Rigor profesional</h4>
+        <p>Metodología estructurada, progresión medible y objetivos claros.</p>
+      </div>
+    </div>
+    <div class="hero-badge fade-up" style="animation-delay:0.3s">
+      <div class="badge-icon" style="background:var(--teal-light)">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 10c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#2A6B5E" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M4 10c0 3.314 2.686 6 6 6" stroke="#2A6B5E" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="14" cy="14" r="3" stroke="#2A6B5E" stroke-width="1.2"/>
+          <path d="M13 14l.75.75 1.5-1.5" stroke="#2A6B5E" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="badge-text">
+        <h4>Acompañamiento humano</h4>
+        <p>Un coach que conoce tu nombre, metas y puntos débiles.</p>
+      </div>
+    </div>
+    <div class="hero-badge fade-up" style="animation-delay:0.4s">
+      <div class="badge-icon" style="background:#EEEDFE">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 3l1.5 4.5H16l-3.75 2.75 1.5 4.5L10 12l-3.75 2.75 1.5-4.5L4 7.5h4.5L10 3z" stroke="#534AB7" stroke-width="1.1" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="badge-text">
+        <h4>Comunidad Rooted</h4>
+        <p>Speaking Lounges mensuales para socializar en inglés.</p>
+      </div>
+    </div>
+    <div class="hero-badge fade-up" style="animation-delay:0.5s">
+      <div class="badge-icon" style="background:#EAF4F1">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="5" width="14" height="10" rx="2" stroke="#2A6B5E" stroke-width="1.2"/>
+          <path d="M8 9l2 2 4-4" stroke="#2A6B5E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="badge-text">
+        <h4>Clases 100% en vivo</h4>
+        <p>Sin grabaciones frías. Cada clase es una conversación real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MÉTODO -->
+<section id="metodo" class="metodo-bg">
+  <div class="section-inner">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-dot"></div>
+      <span>El método</span>
+    </div>
+    <div class="metodo-grid">
+      <div>
+        <h2 class="display">Active Coaching:<br>más que clases,<br><em>un entrenamiento</em></h2>
+        <p class="section-lead">Desde el primer día tu cerebro aprende a pensar en inglés — no a traducir.</p>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-bullet">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="8.5" stroke="#B85C38" stroke-width="1"/>
+                <circle cx="10" cy="10" r="4" fill="#F5E8E0"/>
+                <circle cx="10" cy="10" r="2" fill="#B85C38"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Enfoque conversacional real</h3>
+              <p>Situaciones de la vida diaria: desde pedir en un restaurante en Londres hasta conducir una reunión internacional. Sin repeticiones mecánicas.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-bullet">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="8.5" stroke="#2A6B5E" stroke-width="1"/>
+                <circle cx="10" cy="10" r="4" fill="#EAF4F1"/>
+                <circle cx="10" cy="10" r="2" fill="#2A6B5E"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Profesor-coach personal</h3>
+              <p>Tu coach identifica tus muletillas y errores en tiempo real, con paciencia y calidez. No eres un número en una plataforma.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-bullet">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="8.5" stroke="#534AB7" stroke-width="1"/>
+                <circle cx="10" cy="10" r="4" fill="#EEEDFE"/>
+                <circle cx="10" cy="10" r="2" fill="#534AB7"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Temas que te importan</h3>
+              <p>Si te gusta la tecnología, el cine o la gastronomía, usamos esos mundos para enseñarte. El aprendizaje es más rápido cuando te apasiona el contenido.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-bullet">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="8.5" stroke="#B85C38" stroke-width="1"/>
+                <path d="M6.5 10.5l2.5 2.5 4-5" stroke="#B85C38" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Grupos pequeños (máx. 10)</h3>
+              <p>El tamaño del grupo importa. Menos alumnos significa más tiempo en el micrófono, más correcciones personalizadas, más progreso real.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="formula-stack">
+        <div style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem">La fórmula Rooted</div>
+        <div class="formula-card">
+          <h4>Rigor profesional</h4>
+          <p>Metodología estructurada, progresión medible y objetivos claros en cada etapa del aprendizaje.</p>
+        </div>
+        <div class="formula-op">+</div>
+        <div class="formula-card">
+          <h4>Acompañamiento humano</h4>
+          <p>Un equipo que te conoce, te motiva y celebra cada avance. Nunca aprendes solo.</p>
+        </div>
+        <div class="formula-op">=</div>
+        <div class="formula-card accent">
+          <h4>Fluidez real y duradera</h4>
+          <p>No solo pasas un examen. Hablas con confianza, piensas en inglés y te conectas con el mundo.</p>
+        </div>
+
+        <div style="margin-top:1.5rem;padding:1.25rem;background:white;border:0.5px solid var(--border);border-radius:14px">
+          <div style="font-size:11px;font-weight:500;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:.75rem">Comunidad Rooted</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7">Eventos temáticos mensuales para socializar en inglés. Speaking Lounges, debates y simulaciones en un ambiente seguro y libre de juicios.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROGRAMAS -->
+<section id="programas">
+  <div class="section-inner">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-dot"></div>
+      <span>Programas</span>
+    </div>
+    <h2 class="display">Encuentra tu <em>camino</em></h2>
+    <p class="section-lead">Cada programa está diseñado para un perfil y objetivo específico. Todos incluyen grupos pequeños y clases 100% en vivo.</p>
+
+    <div class="prog-tabs" id="progTabs">
+      <button class="prog-tab active" onclick="switchProg('kids',this)">Kids &amp; Teens</button>
+      <button class="prog-tab" onclick="switchProg('adults',this)">Jóvenes &amp; Adultos</button>
+    </div>
+
+    <!-- Kids -->
+    <div id="prog-kids">
+      <div style="margin-bottom:1.5rem">
+        <p style="font-size:13px;color:var(--muted)">Programas para 4–17 años · Clases virtuales · Grupos máx. 10 alumnos</p>
+      </div>
+      <div class="kids-levels">
+        <div class="level-card d1">
+          <span class="level-tag">Discovery · 4–8 años</span>
+          <h3>Exploradores</h3>
+          <p>Gamificación total. Los más pequeños aprenden jugando con temas que aman: animales, aventuras y canciones. Clases dinámicas con actividades interactivas.</p>
+        </div>
+        <div class="level-card d2">
+          <span class="level-tag">Mastery · 9–13 años</span>
+          <h3>Constructores</h3>
+          <p>Conversación estructurada, proyectos creativos y primeros debates. Inglés como segunda lengua natural con acompañamiento constante del profesor.</p>
+        </div>
+        <div class="level-card d3">
+          <span class="level-tag">Fluency · 14–17 años</span>
+          <h3>Comunicadores</h3>
+          <p>Preparación para entornos globales, presentaciones y el <strong>Kids Speaking Lounge</strong> — eventos sociales virtuales mensuales donde practican con pares.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adults -->
+    <div id="prog-adults" style="display:none">
+      <div class="adult-card">
+        <h2>"Rompe la barrera del miedo.<br><em>Habla con libertad.</em>"</h2>
+        <p style="font-size:14px;color:var(--muted);margin-top:.5rem">Muchos adultos <em>entienden</em> el inglés pero no lo hablan. Nuestro programa desbloquea esa capacidad con acompañamiento constante.</p>
+        <div class="adult-grid">
+          <div class="adult-feat">
+            <div class="adult-feat-dot"></div>
+            <div>
+              <h4>Conversación real</h4>
+              <p>Situaciones auténticas: viajes, trabajo, vida social. Sin repeticiones mecánicas.</p>
+            </div>
+          </div>
+          <div class="adult-feat">
+            <div class="adult-feat-dot"></div>
+            <div>
+              <h4>Coaching personalizado</h4>
+              <p>Tu coach corrige tus muletillas en tiempo real, con paciencia y motivación constante.</p>
+            </div>
+          </div>
+          <div class="adult-feat">
+            <div class="adult-feat-dot"></div>
+            <div>
+              <h4>Speaking Lounge</h4>
+              <p>Socializa en inglés con otros alumnos en un ambiente seguro y libre de juicios.</p>
+            </div>
+          </div>
+          <div class="adult-feat">
+            <div class="adult-feat-dot"></div>
+            <div>
+              <h4>Tu ritmo de vida</h4>
+              <p>Clases en vivo que se adaptan a tu agenda. Donde estés, aprendes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ESP -->
+<section id="esp" class="esp-bg">
+  <div class="section-inner">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-dot" style="background:var(--terracotta-mid)"></div>
+      <span>English for Specific Purposes</span>
+    </div>
+    <h2 class="display">Domina el lenguaje técnico<br>de <em>tu industria</em></h2>
+    <p class="section-lead">No es lo mismo negociar un contrato que reportar una emergencia en cabina. Programas diseñados por expertos para expertos.</p>
+
+    <div class="esp-sectors" id="espSectors">
+      <div class="esp-sector-tab active" onclick="switchEsp('aero',this)">
+        <div class="esp-sector-name">Aeronáutica</div>
+        <div class="esp-sector-sub">Pilotos · OACI</div>
+      </div>
+      <div class="esp-sector-tab" onclick="switchEsp('salud',this)">
+        <div class="esp-sector-name">Salud</div>
+        <div class="esp-sector-sub">Médicos · Clínicas</div>
+      </div>
+      <div class="esp-sector-tab" onclick="switchEsp('ing',this)">
+        <div class="esp-sector-name">Ingeniería</div>
+        <div class="esp-sector-sub">Proyectos · R&amp;D</div>
+      </div>
+      <div class="esp-sector-tab" onclick="switchEsp('call',this)">
+        <div class="esp-sector-name">Call Center</div>
+        <div class="esp-sector-sub">BPO · Soporte</div>
+      </div>
+      <div class="esp-sector-tab" onclick="switchEsp('gas',this)">
+        <div class="esp-sector-name">Gastronomía</div>
+        <div class="esp-sector-sub">Sala · Alta gama</div>
+      </div>
+      <div class="esp-sector-tab" onclick="switchEsp('tec',this)">
+        <div class="esp-sector-name">Técnico</div>
+        <div class="esp-sector-sub">Mantenimiento</div>
+      </div>
+      <div class="esp-sector-tab" onclick="switchEsp('fin',this)">
+        <div class="esp-sector-name">Finanzas</div>
+        <div class="esp-sector-sub">Instituciones financieras</div>
+      </div>
+      <div class="esp-sector-tab" onclick="switchEsp('mkt',this)">
+        <div class="esp-sector-name">Marketing</div>
+        <div class="esp-sector-sub">Publicidad · Agencias</div>
+      </div>
+    </div>
+
+    <!-- Details -->
+    <div id="esp-aero" class="esp-detail active">
+      <div class="esp-detail-header">
+        <h3>Aeronáutica</h3>
+        <span>Pilotos · Personal de cabina</span>
+      </div>
+      <div class="esp-bullets">
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Manejo de emergencias en cabina con vocabulario OACI preciso</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Habilidades de comunicación para operar en entornos internacionales</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Metodología práctica con simulaciones de escenarios reales</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Preparación para estándares y certificaciones OACI</p></div>
+      </div>
+    </div>
+    <div id="esp-salud" class="esp-detail">
+      <div class="esp-detail-header"><h3>Salud</h3><span>Médicos · Especialistas · Estudiantes</span></div>
+      <div class="esp-bullets">
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Atención y comunicación con pacientes internacionales</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Especialidades: cardiología, cirugía, obstetricia, dermatología</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Preparación para equipos multidisciplinarios internacionales</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Inglés para procesos de reclutamiento global y salud pública</p></div>
+      </div>
+    </div>
+    <div id="esp-ing" class="esp-detail">
+      <div class="esp-detail-header"><h3>Ingeniería</h3><span>Proyectistas · Gestores · Estudiantes</span></div>
+      <div class="esp-bullets">
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Informes técnicos detallados y presentaciones estilo TED</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Terminología de diseño, física, R&amp;D y control de calidad</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Debates de viabilidad de materiales y logística internacional</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Liderazgo de reuniones y proyectos en entornos globales</p></div>
+      </div>
+    </div>
+    <div id="esp-call" class="esp-detail">
+      <div class="esp-detail-header"><h3>Call Center / BPO</h3><span>Agentes · Supervisores · Soporte técnico</span></div>
+      <div class="esp-bullets">
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Manejo de clientes difíciles con protocolo profesional</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Soft skills para una atención empática y efectiva</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Neutralización de acento para mejor comprensión global</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Resolución efectiva de tickets y escalaciones en inglés</p></div>
+      </div>
+    </div>
+    <div id="esp-gas" class="esp-detail">
+      <div class="esp-detail-header"><h3>Gastronomía</h3><span>Sala · Cocina · Alta gama</span></div>
+      <div class="esp-bullets">
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Gestión de sala y comunicación con clientes internacionales</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Descripción técnica de platos y maridajes en inglés</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Protocolo de servicio de alta gama y restauración de lujo</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Terminología culinaria internacional y coordinación de cocina</p></div>
+      </div>
+    </div>
+    <div id="esp-tec" class="esp-detail">
+      <div class="esp-detail-header"><h3>Técnico</h3><span>Mecánicos · Electricistas · Mantenimiento</span></div>
+      <div class="esp-bullets">
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Lectura e interpretación de manuales de reparación en inglés</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Instrucciones de seguridad en planta y entornos industriales</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Descripción técnica de averías y diagnósticos de fallas</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Pedidos de piezas, proveedores y comunicación con fabricantes</p></div>
+      </div>
+    </div>
+    <div id="esp-fin" class="esp-detail">
+      <div class="esp-detail-header"><h3>Finanzas</h3><span>Bancarios · Analistas · Gestores</span></div>
+      <div class="esp-bullets">
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Pensar y trabajar en inglés dentro de instituciones financieras</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>De la teoría del idioma a la práctica laboral inmediata</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Vocabulario para negociación, análisis y reportes financieros</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Comunicación con clientes, socios y reguladores internacionales</p></div>
+      </div>
+    </div>
+    <div id="esp-mkt" class="esp-detail">
+      <div class="esp-detail-header"><h3>Marketing &amp; Publicidad</h3><span>Creativos · Estrategas · Agencias</span></div>
+      <div class="esp-bullets">
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Briefings, pitches y presentaciones de campañas internacionales</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Comunicación de marca en entornos creativos globales</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Redacción publicitaria (copywriting) y conceptos creativos en inglés</p></div>
+        <div class="esp-bullet"><div class="esp-bullet-mark"></div><p>Negociación con clientes y proveedores internacionales</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="nosotros" style="background:var(--warm-white)">
+  <div class="section-inner">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-dot"></div>
+      <span>¿Por qué Rooted?</span>
+    </div>
+    <h2 class="display">El factor humano que<br><em>marca la diferencia</em></h2>
+    <p class="section-lead" style="margin-bottom:2.5rem">A diferencia de las grandes aplicaciones automatizadas, creemos que el idioma es una conexión entre personas.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num" data-n="01" style="font-size:3rem;color:var(--terracotta-light);margin-bottom:.75rem;font-family:var(--font-display)">01</div>
+        <h3>Profesores, no algoritmos</h3>
+        <p>Detrás de cada pantalla hay un docente que conoce tu nombre, tus metas y tus puntos débiles. Sin bots, sin respuestas automáticas, sin aprendizaje frío.</p>
+      </div>
+      <div class="why-card">
+        <div style="font-size:3rem;color:var(--terracotta-light);margin-bottom:.75rem;font-family:var(--font-display)">02</div>
+        <h3>Temas que te importan</h3>
+        <p>Si te gusta la tecnología, el cine o la ciencia, usamos esos temas para enseñarte. El aprendizaje es más rápido y genuino cuando te apasiona lo que haces.</p>
+      </div>
+      <div class="why-card">
+        <div style="font-size:3rem;color:var(--terracotta-light);margin-bottom:.75rem;font-family:var(--font-display)">03</div>
+        <h3>Acompañamiento real</h3>
+        <p>Estamos ahí para motivarte, corregirte con calidez y asegurarnos de que cumplas cada objetivo hasta llegar a tu meta. No aprendes solo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TESTIMONIOS -->
+<section class="testi-bg">
+  <div class="section-inner">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-dot"></div>
+      <span>Testimonios</span>
+    </div>
+    <h2 class="display">Historias reales de<br><em>fluidez conquistada</em></h2>
+    <div class="testi-grid" style="margin-top:2rem">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p>Por primera vez siento que tengo un profesor que me conoce de verdad. No solo corrige mis errores — me explica por qué y me anima a seguir. Mi confianza al hablar cambió completamente.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">VR</div>
+          <div><div class="testi-name">Valentina R.</div><div class="testi-role">Programa Adultos · Lima</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p>El programa ESP de aviación fue exactamente lo que necesitaba. Terminología OACI, simulaciones de emergencia, todo en contexto real. Es la academia que cualquier piloto debería conocer.</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--teal-light);color:var(--teal)">MT</div>
+          <div><div class="testi-name">Capitán Marcos T.</div><div class="testi-role">ESP Aeronáutica</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p>Mi hijo pasó de odiar el inglés a esperar cada clase con emoción. El Speaking Lounge fue un antes y después — hablar con otros niños del mundo le quitó completamente el miedo.</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#EEEDFE;color:#534AB7">PS</div>
+          <div><div class="testi-name">Patricia S.</div><div class="testi-role">Mamá · Kids Fluency</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p>Llevaba años entendiendo el inglés pero sin poder hablarlo. En tres meses logré mantener mi primera reunión en inglés sin preparar cada frase de antemano. Increíble acompañamiento.</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#EAF4F1;color:var(--teal)">AC</div>
+          <div><div class="testi-name">Andrés C.</div><div class="testi-role">Programa Jóvenes &amp; Adultos</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contacto" class="cta-section">
+  <div style="max-width:580px;margin:0 auto">
+    <div style="display:inline-block;background:rgba(255,255,255,0.15);border-radius:40px;padding:5px 16px;margin-bottom:1.5rem;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.8)">Sesión gratuita · Sin compromiso</div>
+    <h2>¿Listo para hablar inglés<br><em>con confianza real?</em></h2>
+    <p>Agenda tu sesión de diagnóstico gratuita. Un profesor real analizará tu nivel y te dirá exactamente qué programa es para ti.</p>
+    <a href="https://wa.me/51951390506?text=Hola%2C%20quiero%20agendar%20mi%20sesi%C3%B3n%20de%20diagn%C3%B3stico%20gratuita" class="btn-white">
+      <svg class="wha-icon" viewBox="0 0 24 24" fill="#B85C38" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Escríbenos por WhatsApp
+    </a>
+    <p class="cta-sub">+51 951 390 506 · Respuesta en menos de 24 horas</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Rooted <span>Language</span></div>
+  <div class="footer-links">
+    <a href="#metodo">Método Active Coaching</a>
+    <a href="#programas">Kids &amp; Teens</a>
+    <a href="#programas">Jóvenes &amp; Adultos</a>
+    <a href="#esp">English for Professionals</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div class="footer-copy">© 2025 Rooted Language · Todos los derechos reservados</div>
+</footer>
+
+<script>
+function switchProg(id, btn) {
+  document.getElementById('prog-kids').style.display = id === 'kids' ? 'block' : 'none';
+  document.getElementById('prog-adults').style.display = id === 'adults' ? 'block' : 'none';
+  document.querySelectorAll('.prog-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function switchEsp(id, tab) {
+  document.querySelectorAll('.esp-detail').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.esp-sector-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('esp-' + id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+</body>
+</html>

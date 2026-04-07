@@ -16,9 +16,6 @@ To become a leading English coaching platform in Latin America.
 - Professional English
 - Interview Preparation
 
-## Website
-https://rootedlanguage.github.io/rootedlanguage/
-
 ## Contact
 Email: rootedlanguage.info@gmail.com
 
